@@ -42,3 +42,31 @@ Next, install rails:
 ```
 gem install rails
 ```
+Now we have a functioning rails environment, so we'll tell rails to build a new application:
+``` bash
+rails new . -d postgresql
+```
+This should create a new rails application in the current directory; if you have your IDE opened on the directory, you'll see lots of new files and folders turn up.
+
+Next, we need to change the database configuration to point at the postgres container in our docker environment.
+Open `config/database.yml`, and add
+``` yaml
+host: postgres
+user: postgres
+``` 
+to the development and test entries.
+
+You can now set up the rails databases:
+``` bash
+rails db:create
+rails db:migrate
+```
+At this point, you've installed Rails, created an empty project, and initialized the database.
+
+Final step is to open a new terminal window, and run 
+``` bash 
+docker-compose up rails
+```
+This will start the Rails webserver; you can [visit the homepage](http://localhost:3000) to verify.
+```bash 
+bin/
