@@ -68,5 +68,5 @@ Final step is to open a new terminal window, and run
 docker-compose up rails
 ```
 This will start the Rails webserver; you can [visit the homepage](http://localhost:3000) to verify.
-```bash 
-bin/
+
+You can check this all out at [todo]()
