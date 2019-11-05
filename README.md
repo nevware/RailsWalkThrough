@@ -70,3 +70,43 @@ docker-compose up rails
 This will start the Rails webserver; you can [visit the homepage](http://localhost:3000) to verify.
 
 You can check this all out at [todo]()
+
+### Let's make it pretty with Bootstrap
+
+The "out of the box" Rails scaffolding is a bit...ugly. Let's use Bootstrap to make it look more professional.
+
+There's a [nice integration for Bootstrap and Rails](https://github.com/seyhunak/twitter-bootstrap-rails) which does most of the work for you. 
+
+We'll start by creating a homepage:
+```
+rails g controller page index --skip-stylesheets --skip-javascripts
+```
+and telling Rails to use this as the homepage by modifying `config/routes.rb` to add the following line:
+```
+root to: 'page#index'
+```
+
+Next, we add the required gems to `Gemfile`
+
+``` Ruby
+# Bootstrap and dependencies
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+#required by bootstrap:
+gem 'jquery-rails'
+```
+Now we run `bundle install` to install everything. 
+
+Next, we tell bootstrap-rails to install itself, and to install all the static assets:
+```
+rails generate bootstrap:install less
+ rails g bootstrap:install static
+```
+
+Now, the bootstrap default template includes a bunch of favicon references, which aren't installed by the "static" method, and modern versions of Rails will complain if you refer to missing files. 
+So, either create the required icon files, or remove those references from the `/app/views/layout/application.html.erb` template file.
+
+Re-start rails, and we get a new homepage - it should look a little like this:
+![screenshot of bootstrap](/walkthrough_assets/bootstrap-basic.png "Bootstrap without much else")
+
