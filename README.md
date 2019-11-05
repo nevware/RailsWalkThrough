@@ -105,8 +105,44 @@ rails generate bootstrap:install less
 ```
 
 Now, the bootstrap default template includes a bunch of favicon references, which aren't installed by the "static" method, and modern versions of Rails will complain if you refer to missing files. 
-So, either create the required icon files, or remove those references from the `/app/views/layout/application.html.erb` template file.
+So, either create the required icon files, and put them in the `app/assets/images` folder or remove those references from the `/app/views/layout/application.html.erb` template file.
 
 Re-start rails, and we get a new homepage - it should look a little like this:
 ![screenshot of bootstrap](/walkthrough_assets/bootstrap-basic.png "Bootstrap without much else")
 
+### Let's add some business logic
+The application we're building will be a simple timecard system. 
+
+The major user stories will be:
+
+> As an administrator, I want to create, modify and delete clients so we can record time against clients and their projects.
+
+> As an administrator, I want to create, modify and delete projects for clients, so we can record time against projects
+
+> As an administrator, I want to assign consultants to a project, so they can book time.
+
+> As a consultant, I want to book time against a project so we can track our effort
+
+> As an administrator, I want to see all time booked against a client so I can see how much effort we've spent
+
+So, let's generate the basic business entities here.
+
+```
+ rails g scaffold client name:string status:integer 
+ rails g scaffold project name:string status:integer client:belongs_to
+ rails g scaffold person name:string role:integer
+ rails g scaffold assignment start_date:datetime end_date:datetime person:belongs_to project:belongs_to assignment:belongs_to status:integer
+ rails g scaffold timesheet amount:float unit:integer assignment:belongs_to status:integer start_date:datetime end_date:datetime 
+```
+
+Get Rails to build the database tables:
+```
+rails db:migrate
+```
+
+ We can now visit our pages to see they all work:
+  - The [People page](http://localhost:3000/people)
+  - The [Clients page](http://localhost:3000/clients)
+  - The [Projects page](http://localhost:3000/projects)
+  - The [Assignments page](http://localhost:3000/assignments)
+  - The [Timesheets page](http://localhost:3000/timesheets)

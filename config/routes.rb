@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :timesheets
+  resources :assignments
+  resources :people
+  resources :projects
+  resources :clients
   get 'page/index'
   root to: 'page#index'
   

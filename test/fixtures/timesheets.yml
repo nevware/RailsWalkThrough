@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1.5
+  unit: 1
+  assignment: one
+  status: 1
+  start_date: 2019-11-05 17:59:27
+  end_date: 2019-11-05 17:59:27
+
+two:
+  amount: 1.5
+  unit: 1
+  assignment: two
+  status: 1
+  start_date: 2019-11-05 17:59:27
+  end_date: 2019-11-05 17:59:27
