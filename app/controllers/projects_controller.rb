@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /projects
   # GET /projects.json
   def index
@@ -14,17 +14,20 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
+    authorize @project, policy_class: AdminOnlyPolicy
     @project = Project.new
   end
 
   # GET /projects/1/edit
   def edit
+    authorize Project, policy_class: AdminOnlyPolicy
   end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    authorize @project, policy_class: AdminOnlyPolicy
 
     respond_to do |format|
       if @project.save
@@ -40,6 +43,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize Project, policy_class: AdminOnlyPolicy
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -54,6 +58,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    authorize Project, policy_class: AdminOnlyPolicy
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :timesheets
   resources :assignments
   resources :people
   resources :projects
   resources :clients
+  
   get 'page/index'
   root to: 'page#index'
   

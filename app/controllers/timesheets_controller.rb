@@ -1,10 +1,12 @@
 class TimesheetsController < ApplicationController
+  
   before_action :set_timesheet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /timesheets
   # GET /timesheets.json
   def index
-    @timesheets = Timesheet.all
+    @timesheets = policy_scope(Timesheet)
   end
 
   # GET /timesheets/1
@@ -64,7 +66,7 @@ class TimesheetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_timesheet
-      @timesheet = Timesheet.find(params[:id])
+      @timesheet = policy_scope(Timesheet).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -15,3 +15,12 @@ two:
   status: 1
   start_date: 2019-11-05 17:59:27
   end_date: 2019-11-05 17:59:27
+
+timesheets_for_standard_user:
+  amount: 1.5
+  unit: 1
+  assignment: two
+  status: 1
+  start_date: 2019-11-05 17:59:27
+  end_date: 2019-11-05 17:59:27
+  assignment: one

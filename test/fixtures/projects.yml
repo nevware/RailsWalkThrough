@@ -9,3 +9,8 @@ two:
   name: MyString
   status: 1
   client: two
+
+project_without_assignments:
+  name: project_without_assignments
+  status: 1
+  client: one

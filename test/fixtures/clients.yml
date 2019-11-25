@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   status: 1
+
+no_projects:
+  name: no_projects
+  status: 1

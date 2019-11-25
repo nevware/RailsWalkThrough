@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /clients
   # GET /clients.json
   def index
@@ -14,6 +14,8 @@ class ClientsController < ApplicationController
 
   # GET /clients/new
   def new
+    authorize Client, policy_class: AdminOnlyPolicy
+    
     @client = Client.new
   end
 
@@ -24,6 +26,8 @@ class ClientsController < ApplicationController
   # POST /clients
   # POST /clients.json
   def create
+    authorize Client, policy_class: AdminOnlyPolicy
+    
     @client = Client.new(client_params)
 
     respond_to do |format|
@@ -40,6 +44,8 @@ class ClientsController < ApplicationController
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
+
+    authorize Client, policy_class: AdminOnlyPolicy
     respond_to do |format|
       if @client.update(client_params)
         format.html { redirect_to @client, notice: 'Client was successfully updated.' }
@@ -54,6 +60,8 @@ class ClientsController < ApplicationController
   # DELETE /clients/1
   # DELETE /clients/1.json
   def destroy
+
+    authorize Client, policy_class: AdminOnlyPolicy
     @client.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }

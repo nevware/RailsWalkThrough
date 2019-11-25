@@ -18,17 +18,17 @@
 
   <div class="field">
     <%= form.label :end_date %>
-    <%= form.text_field :end_date %>
+    <%= form.datetime_select :end_date %>
   </div>
 
   <div class="field">
     <%= form.label :person_id %>
-    <%= form.text_field :person_id %>
+    <%= form.collection_select(:person_id, Person.all, :id, :name) %>
   </div>
 
   <div class="field">
     <%= form.label :project_id %>
-    <%= form.text_field :project_id %>
+    <%= form.collection_select(:project_id, Project.all, :id, :name) %>
   </div>
 
   <div class="actions">
