@@ -28,6 +28,8 @@ mkdir .dockerdev
 cd .dockerdev/
 curl https://raw.githubusercontent.com/evilmartians/terraforming-rails/master/examples/dockerdev/.dockerdev/Dockerfile -o Dockerfile
 curl https://raw.githubusercontent.com/evilmartians/terraforming-rails/master/examples/dockerdev/.dockerdev/Aptfile -o Aptfile
+curl https://raw.githubusercontent.com/evilmartians/terraforming-rails/master/examples/dockerdev/.dockerdev/.bashrc -o .bashrc
+curl https://raw.githubusercontent.com/evilmartians/terraforming-rails/master/examples/dockerdev/.dockerdev/.psqlrc -o .psqlrc
 ```
 
 OK, so now we have everything we need to build the Docker images for development. Next, we may as well open our folder in the code editor of choice - I'm going to be using VS Code - and edit the docker-compose.yml file.
